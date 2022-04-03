@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using ContactService.Extensions;
 using System.Linq;
+using ContactService.Entities;
 
 namespace ContactService.Services.Concrete
 {
@@ -25,23 +26,24 @@ namespace ContactService.Services.Concrete
 
         public void DeleteContact(Guid id)
         {
-             _contactRepository.Delete(id);   
+            _contactRepository.Delete(id);
         }
 
         public IQueryable<ContactDto> GetAll()
         {
-           return  _contactRepository.GetAll().Select(x => x.ConvertToDto());
+            return _contactRepository.GetAll().Select(x => x.ConvertToDto());
         }
 
         public ContactDto GetContact(Guid id)
         {
-           return _contactRepository.Get(x=>x.Uuid==id).ConvertToDto();
+            return _contactRepository.Get(x => x.Uuid == id).ConvertToDto();
         }
 
-        public List<ContactInformationDto> GetContactInformation(Guid id)
+        public List<ContactInformation> GetContactInformation(Guid id)
         {
-            //_contactRepository.GetContactInfo(id);
-            return null;
+            var contacts = _contactRepository.GetContactWithcontactInformation(id);
+
+            return contacts;
         }
 
         public void UpdateContact(ContactDto _dto)
@@ -49,6 +51,9 @@ namespace ContactService.Services.Concrete
             _contactRepository.Update(_dto.ConvertToEntity());
         }
 
-     
+        List<ContactInformation> IContactService.GetContactInformation(Guid id)
+        {
+            return _contactRepository.GetContactWithcontactInformation(id).ToList();
+        }
     }
 }

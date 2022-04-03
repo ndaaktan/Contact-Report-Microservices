@@ -45,10 +45,9 @@ namespace ContactService
             services.AddHttpClient();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IContactRepository, ContactRepository>();
-
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddScoped<IContactInformationRepository, ContactInformationRepository>();
             services.AddScoped<IContactService, ContactServices>();
+            services.AddScoped<IContactInformationService, ContactInformationService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

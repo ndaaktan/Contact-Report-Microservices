@@ -1,4 +1,5 @@
 ﻿using ContactService.Dtos;
+using ContactService.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,10 @@ namespace ContactService.Services.Abstract
         ContactDto GetContact(Guid id);
         IQueryable<ContactDto> GetAll();  
         void DeleteContact(Guid id);
-        List<ContactInformationDto> GetContactInformation(Guid id);
+        List<ContactInformation> GetContactInformation(Guid id);
         ContactDto AddContact(ContactDto _dto);
         void UpdateContact(ContactDto _dto);  
+
 
     }
 }

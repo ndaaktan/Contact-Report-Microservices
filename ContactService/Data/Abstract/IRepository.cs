@@ -10,7 +10,7 @@ namespace ContactService.Data.Abstract
     public interface IRepository<T> where T : BaseEntity
     {
         IQueryable<T> GetAll();
-        IEnumerable<T> GetAll(Expression<Func<T, bool>> _predicate);
+        IQueryable<T> GetAll(Expression<Func<T, bool>> _predicate);
         T Get(Expression<Func<T, bool>> _predicate);
         T Add(T entity);
         bool Any(Expression<Func<T, bool>> _predicate);

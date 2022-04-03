@@ -27,12 +27,14 @@ namespace ContactService.Data.Concrete
             }
             var record = _entities.FirstOrDefault(x => x.Uuid == id);
             _entities.Remove(record);
-
+            _context.SaveChanges();
         }
 
         public void Delete(List<T> list)
         {
              _entities.RemoveRange(list);
+            _context.SaveChanges();
+
         }
 
         public T Get(Expression<Func<T, bool>> _predicate)
@@ -45,7 +47,7 @@ namespace ContactService.Data.Concrete
             return _entities.AsQueryable();
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> _predicate)
+        public IQueryable<T> GetAll(Expression<Func<T, bool>> _predicate)
         {
             return _entities.Where(_predicate);
         }
@@ -57,7 +59,9 @@ namespace ContactService.Data.Concrete
                 throw new ArgumentNullException("entity");
             }
 
-            return _entities.Add(entity).Entity;
+           var _result= _entities.Add(entity).Entity;
+            _context.SaveChanges();
+            return _result;
         }
 
         public bool Any(Expression<Func<T, bool>> _predicate) =>

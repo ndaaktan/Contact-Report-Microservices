@@ -24,5 +24,38 @@ namespace ContactService.Extensions
                 Company = _entity.Company,
 
             };
+        public static ContactInformation ConvertToEntity(this AddContactInformationDto _dto) =>
+       new ContactInformation
+       {
+           ContactInformationType = _dto.ContactInformationType,
+           ContactUuid = _dto.ContactUuid,
+           Information = _dto.Information
+       };
+        public static GetContactInformation ConvertToDto(this ContactInformation _dto) =>
+      new GetContactInformation
+      {
+          ContactInformationType = _dto.ContactInformationType,
+          ContactUuid = _dto.ContactUuid,
+          Information = _dto.Information,
+          Uuid = _dto.Uuid,
+          InformationType = _dto.ContactInformationType.ToString()
+      };
+        public static ContactInformation ConvertToEntity(this GetContactInformation _dto) =>
+          new ContactInformation
+          {
+              ContactInformationType = _dto.ContactInformationType,
+              ContactUuid = _dto.ContactUuid,
+              Information = _dto.Information,
+              Uuid = _dto.Uuid,
+          };
+        public static ContactInformation ConvertToEntity(this ContactInformationDto _dto) =>
+         new ContactInformation
+         {
+             ContactInformationType = _dto.ContactInformationType,
+             ContactUuid = _dto.ContactUuid,
+             Information = _dto.Information,
+             Uuid = _dto.Uuid,
+         };
+       
     }
 }

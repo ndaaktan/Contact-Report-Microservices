@@ -17,9 +17,24 @@ namespace ContactService.Data.Concrete
             _Context = _context;
         }
 
-        public List<ContactInformationDto> GetContactInfo(Guid id)
+        public List<ContactInformation> GetContactWithcontactInformation(Guid id)
         {
-            return null;
+            var result = _Context.Contacts.Where(x => x.Uuid == id).
+                  Join(_Context.ContactInformations, x => x.Uuid, y => y.ContactUuid,
+                      (x, y) => new
+                      {
+                          Contact = x,
+                          Information = y,
+                      }).Select(x => new ContactInformation
+                      {
+                          Contact = x.Contact,
+                          Information = x.Information.Information,
+                          ContactInformationType = x.Information.ContactInformationType,
+                          Uuid = x.Information.Uuid,
+                          ContactUuid = x.Contact.Uuid
+                      }).
+                   ToList();
+            return result;
         }
     }
 }

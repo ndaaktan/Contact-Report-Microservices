@@ -7,6 +7,7 @@ namespace ContactService.Data.Abstract
 {
     public interface IContactRepository: IRepository<Contact>
     {
-        //List<ContactInformationDto>  GetContactInfo(Guid id);
+        List<ContactInformation> GetContactWithcontactInformation(Guid id);
+
     }
 }
