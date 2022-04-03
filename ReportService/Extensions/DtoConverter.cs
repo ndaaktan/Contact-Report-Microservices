@@ -19,5 +19,11 @@ namespace ReportService.Extensions
                 ReportStat = _entity.ReportStat,
                 Uuid = _entity.Uuid
             };
+        public static Report ConvertToEntity(this ReportRequestDto _dto) =>
+          new Report
+          {
+             Date=_dto.Date,
+             ReportStat=_dto.Status,
+          };
     }
 }

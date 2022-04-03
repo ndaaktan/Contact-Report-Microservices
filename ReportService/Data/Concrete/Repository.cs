@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-
+using System.Threading.Tasks;
 
 namespace ReportService.Data.Concrete
 {
@@ -53,16 +53,16 @@ namespace ReportService.Data.Concrete
             return _entities.Where(_predicate);
         }
 
-        public T Add(T entity)
+        public async Task<Guid> Add(T entity)
         {
             if (_entities == null)
             {
                 throw new ArgumentNullException("entity");
             }
-
-            var _result = _entities.Add(entity).Entity;
-            _context.SaveChanges();
-            return _result;
+            _entities.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            _context.Entry(entity).GetDatabaseValues();
+            return entity.Uuid;
         }
 
         public bool Any(Expression<Func<T, bool>> _predicate) =>

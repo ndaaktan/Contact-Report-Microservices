@@ -36,8 +36,6 @@ namespace ContactService
             services.AddDbContext<ContactDbContext>(options =>
           options.UseNpgsql(Configuration.GetConnectionString("ContactConnection")));
 
-           
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContactService", Version = "v1" });

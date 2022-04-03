@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ReportService.AsyncReportService;
 using ReportService.Context;
 using ReportService.Data.Abstract;
 using ReportService.Data.Concrete;
@@ -38,6 +39,7 @@ namespace ReportService
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<IReportService, ReportServices>();
+            services.AddScoped<IMessageProducer, RabbitMqProducer>();
 
             services.AddSwaggerGen(c =>
             {
