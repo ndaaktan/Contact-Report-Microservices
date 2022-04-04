@@ -32,9 +32,35 @@ The following tools were used in this project:
  * .Net Core
  * Entity Framework
  * PostgreSQL 
- * Docker 
  * EPPlus
  * RabbitMQ
 
 ## :checkered_flag: Starting ##
+* When you start the project, database will be migrate automatically.
+* You should change report and contact database connection strings;
+
+  <img src="https://user-images.githubusercontent.com/61392140/161592935-b1295a73-baae-4a6d-a84b-7194dcbca6f0.png"/>
+  <img src="https://user-images.githubusercontent.com/61392140/161593113-ce2da816-95c8-41de-a833-6c6c2efe4892.png"/>
+* You should change Rabbitmq configuration
+ 
+  <img src="https://user-images.githubusercontent.com/61392140/161593570-bd81a26c-0280-4aac-8d16-1c42b311a26e.png"/>
+* You can create contact, contact information and then you can send request to CreateReport end point. This end point will start to create report asynchronously.
+
+  <img src="https://user-images.githubusercontent.com/61392140/161594139-054889f7-5593-42b0-a03f-7e85b2515c98.png"/>
+* You can list all reports and reports status by using GetAllReports end point.
+
+  <img src="https://user-images.githubusercontent.com/61392140/161594534-fbb54f6e-9639-4d61-9802-838e4a1e986e.png"/>
+* Finally, you can download report by DownloadReport endpoint.
+
+  <img src="https://user-images.githubusercontent.com/61392140/161594798-c68f20f9-4972-4ac5-a884-c9075b7ec094.png"/>
+
+
+
+
+
+
+
+
+
+
 
