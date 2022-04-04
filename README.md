@@ -50,7 +50,7 @@ The following tools were used in this project:
 * You can list all reports and reports status by using GetAllReports end point.
 
   <img src="https://user-images.githubusercontent.com/61392140/161594534-fbb54f6e-9639-4d61-9802-838e4a1e986e.png"/>
-* Finally, you can download report by DownloadReport endpoint.
+* Finally, you can download report by using DownloadReport endpoint.
 
   <img src="https://user-images.githubusercontent.com/61392140/161594798-c68f20f9-4972-4ac5-a884-c9075b7ec094.png"/>
 
