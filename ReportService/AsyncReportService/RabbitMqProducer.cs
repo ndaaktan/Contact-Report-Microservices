@@ -17,9 +17,9 @@ namespace ReportService.AsyncReportService
             _configuration = configuration;
             var factory = new ConnectionFactory()
             {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest",
+                HostName = _configuration["RabbitMQ"],
+                UserName = _configuration["RabbitMQUser"],
+                Password = _configuration["RabbitMQPass"],
                 VirtualHost = "/",
             };
             try

@@ -30,11 +30,6 @@ namespace ContactService.Controllers
         {
             var contact = _contactService.AddContact(_dto).ConvertToEntity();
 
-
-
-
-            //return CreatedAtRoute(nameof(GetContactById), new { Id = contact.Uuid }, _dto);
-
             return Ok(contact);
         }
         [HttpPut]

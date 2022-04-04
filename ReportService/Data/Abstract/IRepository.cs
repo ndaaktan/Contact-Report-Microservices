@@ -14,7 +14,7 @@ namespace ReportService.Data.Abstract
         T Get(Expression<Func<T, bool>> _predicate);
         Task<Guid> Add(T entity);
         bool Any(Expression<Func<T, bool>> _predicate);
-        void Update(T entity);
+        Task Update(T entity);
         void Delete(Guid id);
         void Delete(List<T> list);
     }

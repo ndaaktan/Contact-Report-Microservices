@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ReportService.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +16,15 @@ namespace ReportService
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+           var host= CreateHostBuilder(args).Build();
+            using (var scope = host.Services.CreateScope())
+            {
+                ReportDbContext context = scope.ServiceProvider.GetRequiredService<ReportDbContext>();
+                Console.WriteLine("migrating database ...");
+                context.Database.EnsureCreated();
+                Console.WriteLine("migrating database ... DONE");
+            }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

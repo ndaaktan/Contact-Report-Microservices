@@ -12,6 +12,8 @@ using ReportService.AsyncReportService;
 using ReportService.Context;
 using ReportService.Data.Abstract;
 using ReportService.Data.Concrete;
+using ReportService.Http.Abstract;
+using ReportService.Http.Concrete;
 using ReportService.Services.Abstract;
 using ReportService.Services.Concrete;
 using System;
@@ -40,6 +42,8 @@ namespace ReportService
             services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<IReportService, ReportServices>();
             services.AddScoped<IMessageProducer, RabbitMqProducer>();
+            services.AddHttpClient<IContactClient, ContactClient>();
+            services.AddHostedService<ReportBackgroundService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -47,7 +51,7 @@ namespace ReportService
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ReportDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -55,6 +59,7 @@ namespace ReportService
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ReportService v1"));
             }
+            //context.Database.Migrate();
 
             app.UseHttpsRedirection();
 

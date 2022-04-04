@@ -69,7 +69,7 @@ namespace ReportService.Data.Concrete
            _entities.Any(_predicate);
 
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
             if (entity == null)
             {
@@ -77,7 +77,7 @@ namespace ReportService.Data.Concrete
             }
 
             _entities.Update(entity);
-            _context.SaveChangesAsync();
+           await  _context.SaveChangesAsync();
         }
 
     }

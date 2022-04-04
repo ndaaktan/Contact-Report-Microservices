@@ -48,7 +48,7 @@ namespace ContactService
             services.AddScoped<IContactInformationService, ContactInformationService>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ContactDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -56,6 +56,7 @@ namespace ContactService
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("./v1/swagger.json", "ContactService v1"));
             }
+            //context.Database.Migrate();
 
             app.UseHttpsRedirection();
 
